@@ -4,6 +4,7 @@ run () {
     echo "BEGIN $FILE_NAME"
 
     # Test
+    echo "CURRENT_USER_LOC value: $CURRENT_USER_LOC"
     if [[ -z "$CURRENT_USER_LOC" ]]; then
         echo "CURRENT_USER_LOC is empty, cannot renew cert"
         exit 1
