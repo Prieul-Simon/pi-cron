@@ -5,11 +5,12 @@ run () {
 
     # Test
     echo "CURRENT_USER_LOC value: $CURRENT_USER_LOC"
-    echo "current user is: $USER"
     if [[ -z "$CURRENT_USER_LOC" ]]; then
         echo "CURRENT_USER_LOC is empty, cannot renew cert"
         exit 1
     fi
+    local CURRENT_USER=$(whoami)
+    echo "current user is: $CURRENT_USER"
 
     local CONTAINER_NAME="$(/usr/bin/docker ps --format '{{.Names}}' | grep -E 'certbot-prieulfr' | head -1)"
 
@@ -26,8 +27,8 @@ run () {
     local NGINX_DIR="$CURRENT_USER_LOC/cert/prieul.fr"
     sudo cp "$VOLUME_OUTPUT_DIR/fullchain.pem" "$NGINX_DIR/fullchain-$DATE_SUFFIX.pem"
     sudo cp "$VOLUME_OUTPUT_DIR/privkey.pem" "$NGINX_DIR/privkey-$DATE_SUFFIX.pem"
-    sudo chown $USER:$USER "$NGINX_DIR/fullchain-$DATE_SUFFIX.pem"
-    sudo chown $USER:$USER "$NGINX_DIR/privkey-$DATE_SUFFIX.pem"
+    sudo chown $CURRENT_USER:$CURRENT_USER "$NGINX_DIR/fullchain-$DATE_SUFFIX.pem"
+    sudo chown $CURRENT_USER:$CURRENT_USER "$NGINX_DIR/privkey-$DATE_SUFFIX.pem"
     ln -sf "fullchain-$DATE_SUFFIX.pem" "$NGINX_DIR/fullchain-fixme.pem"
     ln -sf "privkey-$DATE_SUFFIX.pem" "$NGINX_DIR/privkey-fixme.pem"
 
