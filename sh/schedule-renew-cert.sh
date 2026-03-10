@@ -2,8 +2,8 @@
 
 # Certbot only renews certificates within 30 days of expiration, so running it daily is safe
 
-# Every 2 minute, and pipe output to cron service output
-CRON_CONFIG='*/2 * * * *'
+# Every 5 minute, and pipe output to cron service output
+CRON_CONFIG='*/5 * * * *'
 # At 04:58 on day(s) 15th in March, June, September, December
 # CRON_CONFIG='58 4 15 3,6,9,12 *'
 
