@@ -9,7 +9,7 @@ CRON_CONFIG='*/5 * * * *'
 
 # Need current user
 CURRENT_USER_LOC=$HOME
-CRONTAB_ENV_SETTER="CURRENT_USER_LOC=$CURRENT_USER_LOC"
+CRONTAB_ENV_SETTER="export CURRENT_USER_LOC=$CURRENT_USER_LOC"
 
 SCRIPT_ABS_PATH=$(realpath ./renew-cert.bash)
 LOGGER_TAG='cron_renew_cert'
