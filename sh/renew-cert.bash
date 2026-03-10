@@ -23,8 +23,8 @@ run () {
     local DATE_SUFFIX="$(date +%Y)-$(date +%m)"
     local VOLUME_OUTPUT_DIR="$CURRENT_USER_LOC/storage/microsd/data/certbot-prieulfr/etc-letsencrypt/live/prieul.fr"
     local NGINX_DIR="$CURRENT_USER_LOC/cert/prieul.fr"
-    cp "$VOLUME_OUTPUT_DIR/fullchain.pem" "$NGINX_DIR/fullchain-$DATE_SUFFIX.pem"
-    cp "$VOLUME_OUTPUT_DIR/privkey.pem" "$NGINX_DIR/privkey-$DATE_SUFFIX.pem"
+    sudo cp "$VOLUME_OUTPUT_DIR/fullchain.pem" "$NGINX_DIR/fullchain-$DATE_SUFFIX.pem"
+    sudo cp "$VOLUME_OUTPUT_DIR/privkey.pem" "$NGINX_DIR/privkey-$DATE_SUFFIX.pem"
     ln -sf "fullchain-$DATE_SUFFIX.pem" "$NGINX_DIR/fullchain-fixme.pem"
     ln -sf "privkey-$DATE_SUFFIX.pem" "$NGINX_DIR/privkey-fixme.pem"
 
