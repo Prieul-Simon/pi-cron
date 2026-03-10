@@ -1,6 +1,6 @@
 #!/bin/bash
 run () {
-    local FILE_NAME='pg-healthcheck.sh'
+    local FILE_NAME='pg-healthcheck.bash'
     echo "BEGIN $FILE_NAME"
 
     local RELATIVE_PATH_BUN_SCRIPT='../bun/src/pg-healthcheck.ts'
