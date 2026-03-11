@@ -17,19 +17,6 @@ run () {
     # Execute sh file from bound volume
     /usr/bin/docker exec -i $CONTAINER_NAME /bin/sh -c 'cd /certbot-work && ./install_hooks.sh && ./call_certbot.sh'
 
-    # copy files to the expected location and update symbolic links
-    # local DATE_SUFFIX="$(date +%Y)-$(date +%m)"
-    # local VOLUME_OUTPUT_DIR="$CURRENT_USER_LOC/storage/microsd/data/certbot-prieulfr/etc-letsencrypt/live/prieul.fr"
-    # local NGINX_DIR="$CURRENT_USER_LOC/cert/prieul.fr"
-    # sudo cp "$VOLUME_OUTPUT_DIR/fullchain.pem" "$NGINX_DIR/fullchain-$DATE_SUFFIX.pem"
-    # sudo cp "$VOLUME_OUTPUT_DIR/privkey.pem" "$NGINX_DIR/privkey-$DATE_SUFFIX.pem"
-    # sudo chown $CURRENT_USER:$CURRENT_USER "$NGINX_DIR/fullchain-$DATE_SUFFIX.pem"
-    # sudo chown $CURRENT_USER:$CURRENT_USER "$NGINX_DIR/privkey-$DATE_SUFFIX.pem"
-    # ln -sf "fullchain-$DATE_SUFFIX.pem" "$NGINX_DIR/fullchain-fixme.pem"
-    # ln -sf "privkey-$DATE_SUFFIX.pem" "$NGINX_DIR/privkey-fixme.pem"
-
-    # TODO reload nginx ? because it seems that it won't see the cert change
-
     echo "END $FILE_NAME"
 }
 run
