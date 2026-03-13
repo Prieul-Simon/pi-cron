@@ -1,11 +1,9 @@
 #!/bin/sh
 
 
-# Every 5 minute, and pipe output to cron service output
-CRON_CONFIG='*/5 * * * *'
 # Certbot only renews certificates within 30 days of expiration, so running it daily is safe
 # At 04:58 everyday
-# CRON_CONFIG='58 4 * * *'
+CRON_CONFIG='58 4 * * *'
 
 # Need current user
 CURRENT_USER_LOC=$HOME
