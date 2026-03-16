@@ -1,6 +1,5 @@
 #!/bin/sh
 
-
 # Certbot only renews certificates within 30 days of expiration, so running it daily is safe
 # At 04:58 everyday
 CRON_CONFIG='58 4 * * *'
