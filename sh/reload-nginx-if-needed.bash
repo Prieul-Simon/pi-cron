@@ -9,7 +9,7 @@ run () {
     local NGINX_DIR="/home/$CURRENT_USER/cert/prieul.fr"
     local RELOAD_FILE="$NGINX_DIR/.need_nginx_reload"
     if [ ! -f "$RELOAD_FILE" ]; then
-        echo "$RELOAD_FILE does not exist. No need to relaod nginx"
+        echo "$RELOAD_FILE does not exist. No need to reload nginx"
         echo "END $FILE_NAME"
         exit 0
     fi
