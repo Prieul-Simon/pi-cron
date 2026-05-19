@@ -10,6 +10,7 @@
     "typescript": "5.9.3"
   },
   "scripts": {
-    "dev": "bun run src/pg-healthcheck.ts"
+    "pg-healthcheck": "bun run src/pg-healthcheck.ts",
+    "mirror-repos": "bun run src/mirror-repos.ts"
   }
 }
