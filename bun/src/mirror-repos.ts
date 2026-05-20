@@ -74,7 +74,7 @@ async function whichMirrorKind(): Promise<MirrorKind> {
     let kind: MirrorKind
     const mirrorFile = file(mirrorFilePath)
     if (await mirrorFile.exists()) {
-        const current = await mirrorFile.text()
+        const current = (await mirrorFile.text()).trim()
         switch (current) {
             case 'mirror-a':
                 // switch
@@ -85,7 +85,7 @@ async function whichMirrorKind(): Promise<MirrorKind> {
                 kind = 'mirror-a'
                 break;
             default:
-                throw new Error(`Unexpected .current file content: ${current}`)
+                throw new Error(`Unexpected .current file content: "${current}"`)
         }
     } else {
         // Does not exist: start at "A" and create file
