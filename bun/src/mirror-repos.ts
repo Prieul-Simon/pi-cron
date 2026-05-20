@@ -112,9 +112,27 @@ async function endMirrorInfo(kind: MirrorKind) {
 }
 
 async function handleRepo(repository: GithubRepository, mirrorKind: MirrorKind) {
-    // if (repository.name !== 'home') return // DEBUG line
-
     console.info('🗂️ Start handling repo "%s"', repository.name)
+    try {
+        // if (repository.name !== 'home' && repository.name !== 'pi-cron') return // DEBUG line
+        // if (repository.name === 'pi-cron') throw new Error('DEBUG EROR !!!!!')
+
+        await _doHandleRepo(repository, mirrorKind)
+    } catch (err) {
+        if (err instanceof $.ShellError) {
+            console.log(`Failed with code ${err.exitCode}`)
+            console.log(err.stdout.toString())
+            console.log(err.stderr.toString())
+        } else {
+            console.info('⚠️ An error occured when handling repo "%s"', repository.name)
+            console.error(err)
+        }
+    } finally {
+        console.info('✅ End handling repo "%s"', repository.name)
+    }
+}
+
+async function _doHandleRepo(repository: GithubRepository, mirrorKind: MirrorKind) {
     const parentPath = `${mirrorPath}/${mirrorKind}/${repository.visibility.toLocaleLowerCase()}`
     const repoPath = `${parentPath}/${repository.name}`
     if (await exists(repoPath)) {
@@ -124,7 +142,6 @@ async function handleRepo(repository: GithubRepository, mirrorKind: MirrorKind) 
         console.info('📝 #cloneRepo() "%s"', repository.name)
         await cloneRepo(repository, parentPath)
     }
-    console.info('✅ End handling repo "%s"', repository.name)
 }
 
 async function cloneRepo(repository: GithubRepository, parentPath: string) {
