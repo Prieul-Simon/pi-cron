@@ -151,7 +151,7 @@ async function cloneRepo(repository: GithubRepository, parentPath: string) {
 }
 
 async function syncRepo(repoPath: string) {
-    const shellPromise = $`git fetch --tags --prune --prune-tags --verbose`
+    const shellPromise = $`git fetch --tags --prune --verbose`
         .cwd(repoPath)
     await shellPromise
 }
